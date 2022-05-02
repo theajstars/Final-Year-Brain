@@ -1,0 +1,5 @@
+Thursday 28th April 2022
+Top Half Trained, Bottom Half Testing - 49%
+Bottom Half Trained, Top Half Testing - 49%
+Top 2000 Trained, Bottom 575 Testing - 48%
+Bottom 2000 Trained, Top 575 Testing - 50%
