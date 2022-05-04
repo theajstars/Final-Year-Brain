@@ -3,7 +3,7 @@ const baseURL = "http://127.0.0.1:8080/";
 
 //Fetch data data to train
 axios
-  .get(`${baseURL}datasets/tophalf`)
+  .get(`${baseURL}datasets/top2000`)
   .then((trainResultData) => {
     const trainResult = trainResultData.data.file;
     const options = {
@@ -30,7 +30,7 @@ axios
     nn.normalizeData();
 
     const trainingOptions = {
-      epochs: 32,
+      epochs: 64,
       batchSize: 12,
     };
 

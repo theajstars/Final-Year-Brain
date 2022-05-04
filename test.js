@@ -8,7 +8,7 @@ const options = {
 var correct = [];
 var wrong = [];
 const nn = ml5.neuralNetwork(options);
-nn.load("./TrainedModels/TopHalfTrained/model.json", () => {
+nn.load("./TrainedModels/aNewModels/model.json", () => {
   console.log("Loaded model is readdy!");
   //Fetch  data to test after
   axios.get(`${baseURL}datasets/bottomhalf`).then((testingResult) => {
