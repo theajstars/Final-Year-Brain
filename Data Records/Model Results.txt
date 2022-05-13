@@ -3,3 +3,10 @@ Top Half Trained, Bottom Half Testing - 49%
 Bottom Half Trained, Top Half Testing - 49%
 Top 2000 Trained, Bottom 575 Testing - 48%
 Bottom 2000 Trained, Top 575 Testing - 50%
+
+New Dataset from Israeli Ministry of Health - Thursday 12th May 2022
+Top 500k Trained
+Testing with tail of 500k, 100 sets of 5k each
+Set 1 -> 0 -  5000 = =96%
+Set 2 -> 5000 - 10000 = 97%
+Set 3 -> 10000 - 15000 = 96%

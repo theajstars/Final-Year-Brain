@@ -6,6 +6,7 @@ axios
   .get(`${baseURL}datasets/new/tophalf`)
   .then((trainResultData) => {
     const trainResult = trainResultData.data.file;
+    console.log(trainResult)
     const options = {
       task: "classification",
       debug: true,
@@ -23,8 +24,9 @@ axios
         fever: item.fever,
         sore_throat: item.sore_throat,
         head_ache: item.head_ache,
-        age_60_and_above: item.age_60_and_above,
-        gender: item.gender,
+        shortness_of_breath: item.shortness_of_breath,
+        age_60_and_above: item.age_60_and_above === "Yes" ? 1 : 0,
+        gender: item.gender === "male" ? 0 : 1,
       };
       const output = {
         // infectionProb: item.infectionProb.toString(),
@@ -37,7 +39,7 @@ axios
     nn.normalizeData();
 
     const trainingOptions = {
-      epochs: 64,
+      epochs: 32,
       batchSize: 12,
     };
 
