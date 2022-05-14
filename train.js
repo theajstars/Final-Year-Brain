@@ -6,7 +6,7 @@ axios
   .get(`${baseURL}datasets/new/tophalf`)
   .then((trainResultData) => {
     const trainResult = trainResultData.data.file;
-    console.log(trainResult)
+    console.log(trainResult);
     const options = {
       task: "classification",
       debug: true,
@@ -15,11 +15,6 @@ axios
     const nn = ml5.neuralNetwork(options);
     trainResult.forEach((item) => {
       const inputs = {
-        // fever: item.fever,
-        // bodyPain: item.bodyPain,
-        // age: item.age,
-        // runnyNose: item.runnyNose,
-        // diffBreath: item.diffBreath,
         cough: item.cough,
         fever: item.fever,
         sore_throat: item.sore_throat,
@@ -29,7 +24,6 @@ axios
         gender: item.gender === "male" ? 0 : 1,
       };
       const output = {
-        // infectionProb: item.infectionProb.toString(),
         corona_result: item.corona_result,
       };
 

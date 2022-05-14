@@ -5,6 +5,7 @@ const options = {
   task: "classification",
   debug: true,
 };
+const percentageSuccesses = [];
 var correct = [];
 var wrong = [];
 const nn = ml5.neuralNetwork(options);
@@ -14,15 +15,10 @@ nn.load("./Trained_New/Top_Half/model.json", () => {
   axios.get(`${baseURL}datasets/new/bottomhalf`).then((testingResult) => {
     console.clear();
     // const testSegment = testingResult.data.file;
-    const testSegment = testingResult.data.file.splice(5000, 5000);
-    console.log(testSegment)
+    const testSegment = testingResult.data.file.splice(200000, 50000);
+    console.log(testSegment);
     testSegment.map((testRecord) => {
       const input = {
-        // fever: testRecord.fever,
-        // bodyPain: testRecord.bodyPain,
-        // age: testRecord.age,
-        // runnyNose: testRecord.runnyNose,
-        // diffBreath: testRecord.diffBreath,
         cough: testRecord.cough,
         fever: testRecord.fever,
         sore_throat: testRecord.sore_throat,
@@ -40,6 +36,7 @@ nn.load("./Trained_New/Top_Half/model.json", () => {
             console.error("Error: ", error);
           } else {
             const mapp = testResults.map((result, index) => {
+              console.log(result);
               if (result.label === output) {
                 if (result.confidence > 0.5) {
                   //Prediction is correct
@@ -58,9 +55,6 @@ nn.load("./Trained_New/Top_Half/model.json", () => {
                   wrong.push(obj);
                   // console.log("Prediction is inaccurate!");
                 }
-                console.log(
-                  `Label: ${result.label}, Confidence: ${result.confidence}`
-                );
               }
 
               return {
@@ -70,11 +64,12 @@ nn.load("./Trained_New/Top_Half/model.json", () => {
             });
 
             return Promise.all(mapp).then((e) => {
-              console.clear();
+              // console.clear();
               const wrongNum = wrong.length;
               const correctNum = correct.length;
               const total = wrongNum + correctNum;
-              console.log(Math.floor((correctNum / total) * 100));
+              const percentageSuccess = Math.floor((correctNum / total) * 100);
+              percentageSuccesses.push(percentageSuccess);
             });
           }
         });
@@ -83,3 +78,9 @@ nn.load("./Trained_New/Top_Half/model.json", () => {
     });
   });
 });
+const showSuccess = () => {
+  console.log(percentageSuccesses);
+  const percentageAverage =
+    percentageSuccesses.reduce((a, b) => a + b, 0) / percentageSuccesses.length;
+  console.log(percentageAverage);
+};
