@@ -1,7 +1,7 @@
 console.clear();
 const baseURL = "http://127.0.0.1:8080/";
 
-//Fetch data data to train
+//Fetch top half of data data to train
 axios
   .get(`${baseURL}datasets/new/tophalf`)
   .then((trainResultData) => {
@@ -13,7 +13,7 @@ axios
     };
 
     const nn = ml5.neuralNetwork(options);
-    trainResult.forEach((item) => {
+    trainResult.splice(0, 500).forEach((item) => {
       const inputs = {
         cough: item.cough,
         fever: item.fever,
