@@ -84,3 +84,18 @@ const showSuccess = () => {
     percentageSuccesses.reduce((a, b) => a + b, 0) / percentageSuccesses.length;
   console.log(percentageAverage);
 };
+
+[
+  {
+    label: "negative",
+    confidence: 0.9655,
+  },
+  {
+    label: "positive",
+    confidence: 0.0247,
+  },
+  {
+    label: "other",
+    confidence: 0.0098,
+  },
+];
